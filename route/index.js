@@ -1,9 +1,9 @@
-import { Router } from 'express'
-var router = Router()
+import express from 'express'
+import Music from '../plugins/music'
+
+const router = express.Router()
 
 /* GET home page. */
-router.get('/', function (req, res) {
-  res.send({ message: 'Welcome to Books Api' })
-})
+router.get('/', Music.welcome)
 
-export default router
+module.exports = router
