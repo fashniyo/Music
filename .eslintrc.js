@@ -1,13 +1,21 @@
-// eslint-disable-next-line no-undef
-export default {
+module.exports = {
   env: {
     browser: true,
-    es2020: true
+    es6: true
   },
-  extends: 'eslint:recommended',
+  extends: ['airbnb-base'],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
+  },
   parserOptions: {
     ecmaVersion: 11,
     sourceType: 'module'
   },
-  rules: {}
+  rules: {
+    semi: ['off', 'always'],
+    quotes: ['error', 'single'],
+    'comma-dangle': ['error', 'never'],
+    'operator-linebreak': 'off'
+  }
 }
