@@ -7,20 +7,24 @@
     "url": "git+https://github.com/fashniyo/Music.git"
   },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon --exec babel-node ./bin/www",
+    "lint": "eslint \"./**/*.js\""
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "morgan": "~1.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "eslint": "^7.5.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
     "prettier": "2.0.5"
   }
 }
