@@ -1,6 +1,4 @@
-/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-unused-vars */
-
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.createTable('Music', {
