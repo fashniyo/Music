@@ -4,10 +4,9 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
-// eslint-disable-next-line import/no-unresolved
 const indexRouter = require('./routes/index')
-// eslint-disable-next-line import/no-unresolved
 const usersRouter = require('./routes/users')
+const musicRouter = require('./routes/music')
 
 const app = express()
 
@@ -22,6 +21,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
+app.use('/', musicRouter)
 app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
