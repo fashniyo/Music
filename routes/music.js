@@ -6,5 +6,6 @@ const router = express.Router()
 
 router.get('/music', Music.getAllMusic)
 router.post('/music', Music.addMusic)
+router.delete('/music/:id', Music.deleteMusic)
 
 module.exports = router
