@@ -9,5 +9,6 @@ router.post('/music', Music.addMusic)
 router.delete('/music/:id', Music.deleteMusic)
 router.put('/music/:id', Music.updateMusic)
 router.get('/music/title', Music.searchTitle)
+router.get('/music/:id', Music.musicId)
 
 module.exports = router
