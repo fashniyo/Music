@@ -1,5 +1,6 @@
 import express from 'express'
-import Music from '../plugins/music'
+// eslint-disable-next-line import/extensions
+import Music from '../plugins/music.js'
 
 const router = express.Router()
 
