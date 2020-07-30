@@ -36,9 +36,35 @@ class Music {
           message: 'music not found'
         })
       }
-      return music.destroy().then(() => res.status(204).send({
-        message: 'music deleted successfully'
-      }))
+      return music.destroy().then(() =>
+        res.status(204).send({
+          message: 'music deleted successfully'
+        }))
+    })
+  }
+
+  static updateMusic(req, res) {
+    const id = parseInt(req.params.id)
+    MusicModel.findByPk(id).then((music) => {
+      music
+        .update({
+          title: req.body.title || music.title,
+          album: req.body.album || music.album,
+          genres: req.body.genres || music.genres,
+          length: req.body.length || music.length,
+          rating: music.likes,
+          likes: music.likes,
+          year: req.body.year || music.year,
+          artist: req.body.artist || music.artist,
+          producer: req.body.producer || music.producer,
+          video: req.body.video || music.video,
+          lyrics: req.body.length || music.lyrics
+        })
+        .then((updatedmusic) => {
+          res
+            .status(200)
+            .send({ message: 'Music updated successfully', updatedmusic })
+        })
     })
   }
 }
