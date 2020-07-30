@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import models from '../models/index'
 
 const MusicModel = models.Music
@@ -24,7 +25,21 @@ class Music {
       producer: req.body.producer,
       video: req.body.video,
       lyrics: req.body.length
-    }).then((newMusic) => res.status(201).send({ message: 'Music added successfully', newMusic }))
+    }).then((newMusic) =>
+      res.status(201).send({ message: 'Music added successfully', newMusic }))
+  }
+
+  static deleteMusic(req, res) {
+    MusicModel.findByPk(req.params.id).then((music) => {
+      if (!music) {
+        return res.status(404).send({
+          message: 'music not found'
+        })
+      }
+      return music.destroy().then(() => res.status(204).send({
+        message: 'music deleted successfully'
+      }))
+    })
   }
 }
 
