@@ -82,6 +82,26 @@ class Music {
         res.status(200).send({ music })
       })
   }
+
+  static musicId(req, res) {
+    const id = parseInt(req.params.id)
+    MusicModel
+      .findOne({
+        where: {
+          id
+        }
+      })
+      .then((music) => {
+        if (!music) {
+          return res.status(404).send({
+            message: 'music not found'
+          })
+        }
+        return res
+          .status(201)
+          .send({ message: 'Music found successfully', music })
+      })
+  }
 }
 
 export default Music
