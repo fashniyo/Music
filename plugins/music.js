@@ -1,4 +1,5 @@
 /* eslint-disable radix */
+import { Op } from 'sequelize'
 import models from '../models/index'
 
 const MusicModel = models.Music
@@ -66,6 +67,20 @@ class Music {
             .send({ message: 'Music updated successfully', updatedmusic })
         })
     })
+  }
+
+  static searchTitle(req, res) {
+    MusicModel
+      .findAll({
+        where: {
+          title: {
+            [Op.substring]: `%${req.query.title}%`
+          }
+        }
+      })
+      .then((music) => {
+        res.status(200).send({ music })
+      })
   }
 }
 
