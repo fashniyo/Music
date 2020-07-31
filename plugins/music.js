@@ -256,6 +256,18 @@ class Music {
       })
     }
   }
+
+  static musicProducer(req, res) {
+    MusicModel.findAll({
+      where: {
+        producer: {
+          [Op.substring]: `%${req.query.producer}%`
+        }
+      }
+    }).then((music) => {
+      res.status(200).send({ music })
+    })
+  }
 }
 
 export default Music
