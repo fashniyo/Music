@@ -81,22 +81,22 @@ class Music {
     })
   }
 
-  static musicId(req, res) {
-    const id = parseInt(req.params.id)
-    MusicModel.findOne({
-      where: {
-        id
-      }
-    }).then((music) => {
-      if (!music) {
-        return res.status(404).send({ message: 'music not found' })
-      }
-      return res.status(200).send({
-        message: `Single Music found ${id} sucessfully`,
-        music
-      })
-    })
-  }
+  // static musicId(req, res) {
+  //   const id = parseInt(req.params.id)
+  //   MusicModel.findOne({
+  //     where: {
+  //       id
+  //     }
+  //   }).then((music) => {
+  //     if (!music) {
+  //       return res.status(404).send({ message: 'music not found' })
+  //     }
+  //     return res.status(200).send({
+  //       message: `Single Music found ${id} sucessfully`,
+  //       music
+  //     })
+  //   })
+  // }
 
   static searchGenre(req, res) {
     MusicModel.findAll({
@@ -132,6 +132,45 @@ class Music {
     }).then((music) => {
       res.status(200).send({ music })
     })
+  }
+
+  static musicYear(req, res) {
+    if (req.query.year) {
+      const year = parseInt(req.query.year)
+      MusicModel.findAll({
+        where: {
+          year: {
+            [Op.eq]: year
+          }
+        }
+      }).then((music) => {
+        res.status(200).send({ music })
+      })
+    }
+    if (req.query.year_greater_than) {
+      const year = parseInt(req.query.year_greater_than)
+      MusicModel.findAll({
+        where: {
+          year: {
+            [Op.gt]: year
+          }
+        }
+      }).then((music) => {
+        res.status(200).send({ music })
+      })
+    }
+    if (req.query.year_less_than) {
+      const year = parseInt(req.query.year_less_than)
+      MusicModel.findAll({
+        where: {
+          year: {
+            [Op.lt]: year
+          }
+        }
+      }).then((music) => {
+        res.status(200).send({ music })
+      })
+    }
   }
 }
 
