@@ -102,6 +102,18 @@ class Music {
           .send({ message: 'Music found successfully', music })
       })
   }
+
+  static searchGenre(req, res) {
+    MusicModel.findAll({
+      where: {
+        genres: {
+          [Op.substring]: `%${req.query.genres}%`
+        }
+      }
+    }).then((music) => {
+      res.status(200).send({ music })
+    })
+  }
 }
 
 export default Music

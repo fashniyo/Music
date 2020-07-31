@@ -10,5 +10,6 @@ router.delete('/music/:id', Music.deleteMusic)
 router.put('/music/:id', Music.updateMusic)
 router.get('/music/title', Music.searchTitle)
 router.get('/music/:id', Music.musicId)
+router.get('/music/genre', Music.searchGenre)
 
 module.exports = router
