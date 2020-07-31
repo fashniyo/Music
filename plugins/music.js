@@ -211,6 +211,51 @@ class Music {
       })
     }
   }
+
+  static musicRating(req, res) {
+    if (req.query.rating) {
+      const rating = parseInt(req.query.rating)
+      MusicModel.findAll({
+        where: {
+          rating: {
+            [Op.eq]: rating
+          }
+        }
+      }).then((music) => {
+        res.status(200).send({
+          music
+        })
+      })
+    }
+    if (req.query.rating_greater_than) {
+      const rating = parseInt(req.query.rating_greater_than)
+      MusicModel.findAll({
+        where: {
+          rating: {
+            [Op.gt]: rating
+          }
+        }
+      }).then((music) => {
+        res.status(200).send({
+          music
+        })
+      })
+    }
+    if (req.query.rating_less_than) {
+      const rating = parseInt(req.query.rating_less_than)
+      MusicModel.findAll({
+        where: {
+          rating: {
+            [Op.lt]: rating
+          }
+        }
+      }).then((music) => {
+        res.status(200).send({
+          music
+        })
+      })
+    }
+  }
 }
 
 export default Music
