@@ -5,7 +5,7 @@ const validateAddMusic = (req, res, next) => {
   if (!req.body.title.trim()) {
     return res.status(400).send({ message: 'Title cannot be empty' })
   }
-  if (!req.body.writers.trim()) {
+  if (!req.body.artist.trim()) {
     return res.status(400).send({ message: 'Artist cannot be empty' })
   }
   if (!isNumeric(req.body.year)) {
