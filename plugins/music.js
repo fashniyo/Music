@@ -70,37 +70,32 @@ class Music {
   }
 
   static searchTitle(req, res) {
-    MusicModel
-      .findAll({
-        where: {
-          title: {
-            [Op.substring]: `%${req.query.title}%`
-          }
+    MusicModel.findAll({
+      where: {
+        title: {
+          [Op.substring]: `%${req.query.title}%`
         }
-      })
-      .then((music) => {
-        res.status(200).send({ music })
-      })
+      }
+    }).then((music) => {
+      res.status(200).send({ music })
+    })
   }
 
   static musicId(req, res) {
     const id = parseInt(req.params.id)
-    MusicModel
-      .findOne({
-        where: {
-          id
-        }
+    MusicModel.findOne({
+      where: {
+        id
+      }
+    }).then((music) => {
+      if (!music) {
+        return res.status(404).send({ message: 'music not found' })
+      }
+      return res.status(200).send({
+        message: `Single Music found ${id} sucessfully`,
+        music
       })
-      .then((music) => {
-        if (!music) {
-          return res.status(404).send({
-            message: 'music not found'
-          })
-        }
-        return res
-          .status(201)
-          .send({ message: 'Music found successfully', music })
-      })
+    })
   }
 
   static searchGenre(req, res) {
@@ -108,6 +103,18 @@ class Music {
       where: {
         genres: {
           [Op.substring]: `%${req.query.genres}%`
+        }
+      }
+    }).then((music) => {
+      res.status(200).send({ music })
+    })
+  }
+
+  static searchArtist(req, res) {
+    MusicModel.findAll({
+      where: {
+        artist: {
+          [Op.substring]: `%${req.query.artist}%`
         }
       }
     }).then((music) => {
