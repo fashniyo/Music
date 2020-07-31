@@ -15,5 +15,6 @@ router.get('/musics/artist', Music.searchArtist)
 router.get('/musics/album', Music.searchAlbum)
 router.get('/musics/year', Music.musicYear)
 router.get('/musics/likes', Music.musicLikes)
+router.get('/musics/rating', Music.musicRating)
 
 module.exports = router
