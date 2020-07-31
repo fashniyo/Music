@@ -121,6 +121,18 @@ class Music {
       res.status(200).send({ music })
     })
   }
+
+  static searchAlbum(req, res) {
+    MusicModel.findAll({
+      where: {
+        album: {
+          [Op.substring]: `%${req.query.album}%`
+        }
+      }
+    }).then((music) => {
+      res.status(200).send({ music })
+    })
+  }
 }
 
 export default Music
