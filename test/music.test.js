@@ -36,7 +36,7 @@ describe('Music Api', () => {
     await MusicModel.destroy({ where: {} })
   })
 
-  describe('Index route', () => {
+  describe('Welcome route', () => {
     it('should return welcome message when / route is matched', (done) => {
       request.get('/').end((err, res) => {
         res.status.should.be.equal(200)
@@ -46,8 +46,8 @@ describe('Music Api', () => {
     })
   })
 
-  describe('/GET Get all music', () => {
-    it('it should GET all the music', (done) => {
+  describe('Get all music', () => {
+    it('it should GET all the songs', (done) => {
       request.get('/music').end((err, res) => {
         res.status.should.be.equal(200)
         expect(res.body.music).to.be.an('array')
