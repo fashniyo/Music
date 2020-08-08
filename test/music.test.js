@@ -46,14 +46,14 @@ describe('Music Api', () => {
     })
   })
 
-  describe('Get all music', () => {
-    it('it should GET all the songs', (done) => {
-      request.get('/music').end((err, res) => {
-        res.status.should.be.equal(200)
-        expect(res.body.music).to.be.an('array')
-        expect(res.body.message).be.equal('Songs fetched successfully')
-        done()
-      })
-    })
-  })
+  // describe('Get all music', () => {
+  //   it('it should GET all the songs', (done) => {
+  //     request.get('/music').end((err, res) => {
+  //       res.status.should.be.equal(200)
+  //       expect(res.body.music).to.be.an('array')
+  //       expect(res.body.message).be.equal('Songs fetched successfully')
+  //       done()
+  //     })
+  //   })
+  // })
 })
