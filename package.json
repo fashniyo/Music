@@ -22,6 +22,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^2.1.0",
+    "pg": "^8.3.2",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.3",
     "validator": "^13.1.1"
   },
