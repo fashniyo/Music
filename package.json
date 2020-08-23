@@ -10,7 +10,7 @@
     "start": "node ./bin/www",
     "dev": "nodemon --exec babel-node ./bin/www",
     "lint": "eslint \"./**/*.js\"",
-    "test": "mocha --exit --require @babel/register",
+    "test": "NODE_ENV=test mocha --exit --require @babel/register",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
