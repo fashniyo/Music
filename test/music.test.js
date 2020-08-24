@@ -39,37 +39,39 @@ describe('Music Api', () => {
       length: '4:23',
       rating: 5,
       likes: 1500,
-      year: 2030,
+      year: 2500,
       artist: 'update artist test',
       producer: 'update producer test',
       video: 'wdavalible',
       lyrics: 'update hdgvvs dhsnans dfbfhsh'
     })
-    after(async () => {
-      // empty the database
-      await MusicModel.destroy({ where: {} })
-    })
+  })
+  after(async () => {
+    // empty the database
+    await MusicModel.destroy({ where: {} })
+  })
 
-    describe('Index route', () => {
-      it('should return welcome message when / route is matched', (done) => {
-        request.get('/').end((err, res) => {
-          res.status.should.be.equal(200)
-          expect(res.body.message).be.equal('Welcome to Music House Api')
-          done()
-        })
-      })
-      describe('/GET Get all music', () => {
-        it('it should GET all the music', (done) => {
-          request.get('/music').end((err, res) => {
-            res.status.should.be.equal(200)
-            expect(res.body.music).to.be.an('array')
-            expect(res.body.message).be.equal('Songs fetched successfully')
-            done()
-          })
-        })
+  describe('Index route', () => {
+    it('should return welcome message when / route is matched', (done) => {
+      request.get('/').end((err, res) => {
+        res.status.should.be.equal(200)
+        expect(res.body.message).be.equal('Welcome to Music House Api')
+        done()
       })
     })
   })
+
+  describe('/GET Get all music', () => {
+    it('it should GET all the music', (done) => {
+      request.get('/music').end((err, res) => {
+        res.status.should.be.equal(200)
+        expect(res.body.music).to.be.an('array')
+        expect(res.body.message).be.equal('Songs fetched successfully')
+        done()
+      })
+    })
+  })
+
   describe('Update music route', () => {
     it('should UPDATE a music given the id', (done) => {
       request
@@ -79,9 +81,7 @@ describe('Music Api', () => {
           album: 'update album test',
           genres: 'update RnB',
           length: '4:23',
-          rating: 5,
-          likes: 1500,
-          year: 2030,
+          year: '2500',
           artist: 'update artist test',
           producer: 'update producer test',
           video: 'wdavalible',
@@ -90,6 +90,86 @@ describe('Music Api', () => {
         .end((err, res) => {
           expect(res.status).to.equal(200)
           expect(res.body.message).be.equal('Music updated successfully')
+          done()
+        })
+    })
+    it('should return music with this id does not exist', (done) => {
+      request
+        .put('/music/754342')
+        .send({
+          title: 'update music test',
+          album: 'update album test',
+          genres: 'update RnB',
+          length: '4:23',
+          year: '2500',
+          artist: 'update artist test',
+          producer: 'update producer test',
+          video: 'wdavalible',
+          lyrics: 'update hdgvvs dhsnans dfbfhsh'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(404)
+          expect(res.body.message).be.equal('Music not found')
+          done()
+        })
+    })
+    it('should return Year must be a number if the year passed isnt a number', (done) => {
+      request
+        .put(`/music/${newMusic.id}`)
+        .send({
+          title: 'update music test',
+          album: 'update album test',
+          genres: 'update RnB',
+          length: '4:23',
+          year: 'nfjmhn',
+          artist: 'update artist test',
+          producer: 'update producer test',
+          video: 'wdavalible',
+          lyrics: 'update hdgvvs dhsnans dfbfhsh'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(400)
+          expect(res.body.message).be.equal('Year must be a number')
+          done()
+        })
+    })
+    it('should return title cannot be empty if user doesnt put a title', (done) => {
+      request
+        .put(`/music/${newMusic.id}`)
+        .send({
+          title: '',
+          album: 'update album test',
+          genres: 'update RnB',
+          length: '4:23',
+          year: 2500,
+          artist: '',
+          producer: 'update producer test',
+          video: 'wdavalible',
+          lyrics: 'update hdgvvs dhsnans dfbfhsh'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(400)
+          expect(res.body.message).be.equal('Title cannot be empty')
+          done()
+        })
+    })
+    it('should return artist cannot be empty if user doesnt put an artist', (done) => {
+      request
+        .put(`/music/${newMusic.id}`)
+        .send({
+          title: 'update music test',
+          album: 'update album test',
+          genres: 'update RnB',
+          length: '4:23',
+          year: 2500,
+          artist: '',
+          producer: 'update producer test',
+          video: 'wdavalible',
+          lyrics: 'update hdgvvs dhsnans dfbfhsh'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(400)
+          expect(res.body.message).be.equal('Artist cannot be empty')
           done()
         })
     })

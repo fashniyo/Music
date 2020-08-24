@@ -47,7 +47,10 @@ class Music {
   static updateMusic(req, res) {
     const id = parseInt(req.params.id)
     MusicModel.findByPk(id).then((music) => {
-      music
+      if (!music) {
+        return res.status(404).send({ message: 'Music not found' })
+      }
+      return music
         .update({
           title: req.body.title || music.title,
           album: req.body.album || music.album,
