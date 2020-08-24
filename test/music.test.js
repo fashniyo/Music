@@ -12,6 +12,7 @@ const should = chai.should()
 const request = supertest.agent(server)
 const MusicModel = models.Music
 let newMusic = {}
+let musicToDelete = {}
 
 // eslint-disable-next-line no-undef
 describe('Music Api', () => {
@@ -44,6 +45,17 @@ describe('Music Api', () => {
       producer: 'update producer test',
       video: 'wdavalible',
       lyrics: 'update hdgvvs dhsnans dfbfhsh'
+    })
+    musicToDelete = await MusicModel.create({
+      title: 'delete music test',
+      album: 'delete album test',
+      genres: 'delete RnB',
+      length: '23:23',
+      year: 2700,
+      artist: 'delete artist test',
+      producer: 'delete producer test',
+      video: 'saasasd',
+      lyrics: 'delete hdgvvs dhsnans dfbfhsh'
     })
   })
   after(async () => {
@@ -275,6 +287,22 @@ describe('Music Api', () => {
           expect(res.body.message).be.equal('Artist cannot be empty')
           done()
         })
+    })
+  })
+
+  describe('Delete music', () => {
+    it('should DELETE a music given the id', (done) => {
+      request.delete(`/music/${musicToDelete.id}`).end((err, res) => {
+        res.status.should.be.equal(204)
+        done()
+      })
+    })
+    it('should return music does not exist', (done) => {
+      request.delete('/music/808020').end((err, res) => {
+        res.status.should.be.equal(404)
+        expect(res.body.message).be.equal('music not found')
+        done()
+      })
     })
   })
 })
