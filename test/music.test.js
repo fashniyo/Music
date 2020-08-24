@@ -390,4 +390,37 @@ describe('Music Api', () => {
         })
     })
   })
+
+  describe('Get movie By rating Route', () => {
+    it('should get movie by rating', (done) => {
+      request
+        .get('/musics/rating')
+        .query({ rating: 50 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+    it('should get movie by rating greater than', (done) => {
+      request
+        .get('/musics/rating')
+        .query({ rating_greater_than: 5 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+    it('should get movie by rating less than', (done) => {
+      request
+        .get('/musics/rating')
+        .query({ rating_less_than: 5 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
 })
