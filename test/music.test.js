@@ -208,7 +208,7 @@ describe('Music Api', () => {
           done()
         })
     })
-    it('should Add Book when id does not exist', (done) => {
+    it('should Add music when id does not exist', (done) => {
       request
         .post('/music/2222')
         .send({
@@ -268,7 +268,7 @@ describe('Music Api', () => {
           done()
         })
     })
-    it('should return writer cannot be empty if user doesnt put an writer', (done) => {
+    it('should return artist cannot be empty if user doesnt put an artist', (done) => {
       request
         .post('/music')
         .send({
@@ -326,11 +326,24 @@ describe('Music Api', () => {
     })
   })
 
-  describe('Get Book By title route', () => {
-    it('should get book by title', (done) => {
+  describe('Get music By title route', () => {
+    it('should get music by title', (done) => {
       request
         .get('/musics/title')
         .query({ title: 'update music test' })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
+
+  describe('Get music By artist route', () => {
+    it('should get music by artist', (done) => {
+      request
+        .get('/musics/artist')
+        .query({ artist: 'update artist test' })
         .end((err, res) => {
           res.status.should.be.equal(200)
           expect(res.body.data).to.be.an('array')
