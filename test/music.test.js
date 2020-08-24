@@ -364,4 +364,17 @@ describe('Music Api', () => {
         })
     })
   })
+
+  describe('Get music By album route', () => {
+    it('should get music by album', (done) => {
+      request
+        .get('/musics/album')
+        .query({ album: 'update album test' })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
 })
