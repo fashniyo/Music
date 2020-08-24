@@ -133,7 +133,7 @@ class Music {
         }
       }
     }).then((music) => {
-      res.status(200).send({ music })
+      res.status(200).send({ data: music })
     })
   }
 
@@ -147,7 +147,7 @@ class Music {
           }
         }
       }).then((music) => {
-        res.status(200).send({ music })
+        res.status(200).send({ data: music })
       })
     }
     if (req.query.year_greater_than) {
@@ -159,7 +159,7 @@ class Music {
           }
         }
       }).then((music) => {
-        res.status(200).send({ music })
+        res.status(200).send({ data: music })
       })
     }
     if (req.query.year_less_than) {
@@ -171,7 +171,7 @@ class Music {
           }
         }
       }).then((music) => {
-        res.status(200).send({ music })
+        res.status(200).send({ data: music })
       })
     }
   }
@@ -186,7 +186,7 @@ class Music {
           }
         }
       }).then((music) => {
-        res.status(200).send({ music })
+        res.status(200).send({ data: music })
       })
     }
     if (req.query.likes_greater_than) {
@@ -198,7 +198,7 @@ class Music {
           }
         }
       }).then((music) => {
-        res.status(200).send({ music })
+        res.status(200).send({ data: music })
       })
     }
     if (req.query.likes_less_than) {
@@ -210,7 +210,7 @@ class Music {
           }
         }
       }).then((music) => {
-        res.status(200).send({ music })
+        res.status(200).send({ data: music })
       })
     }
   }
@@ -226,7 +226,7 @@ class Music {
         }
       }).then((music) => {
         res.status(200).send({
-          music
+          data: music
         })
       })
     }
@@ -240,7 +240,7 @@ class Music {
         }
       }).then((music) => {
         res.status(200).send({
-          music
+          data: music
         })
       })
     }
@@ -254,7 +254,7 @@ class Music {
         }
       }).then((music) => {
         res.status(200).send({
-          music
+          data: music
         })
       })
     }
@@ -268,7 +268,7 @@ class Music {
         }
       }
     }).then((music) => {
-      res.status(200).send({ music })
+      res.status(200).send({ data: music })
     })
   }
 }
