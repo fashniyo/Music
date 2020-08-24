@@ -174,4 +174,107 @@ describe('Music Api', () => {
         })
     })
   })
+
+  describe('Add music route', () => {
+    it('should Add Music', (done) => {
+      request
+        .post('/music')
+        .send({
+          title: 'add music',
+          album: 'add album',
+          genres: 'add genre',
+          length: '65:63',
+          year: '2037',
+          artist: 'add artist',
+          producer: 'add producer',
+          video: 'add video',
+          lyrics: 'add lyrics'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(201)
+          expect(res.body.message).be.equal('Music added successfully')
+          done()
+        })
+    })
+    it('should Add Book when id does not exist', (done) => {
+      request
+        .post('/music/2222')
+        .send({
+          title: 'add music',
+          album: 'add album',
+          genres: 'add genre',
+          length: '65:63',
+          year: 2037,
+          artist: 'add artist',
+          producer: 'add producer',
+          video: 'add video',
+          lyrics: 'add lyrics'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(404)
+          expect(res.body.message).be.equal(undefined)
+          done()
+        })
+    })
+    it('should return Year must be a number if the year passed isnt a number', (done) => {
+      request
+        .post('/music')
+        .send({
+          title: 'add music',
+          album: 'add album',
+          genres: 'add genre',
+          length: '65:63',
+          year: 'hdhwd',
+          artist: 'add artist',
+          producer: 'add producer',
+          video: 'add video',
+          lyrics: 'add lyrics'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(400)
+          expect(res.body.message).be.equal('Year must be a number')
+          done()
+        })
+    })
+    it('should return title cannot be empty if user doesnt put a title', (done) => {
+      request
+        .post('/music')
+        .send({
+          title: '',
+          album: 'add album',
+          genres: 'add genre',
+          length: '65:63',
+          year: 2037,
+          artist: 'add artist',
+          producer: 'add producer',
+          video: 'add video',
+          lyrics: 'add lyrics'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(400)
+          expect(res.body.message).be.equal('Title cannot be empty')
+          done()
+        })
+    })
+    it('should return writer cannot be empty if user doesnt put an writer', (done) => {
+      request
+        .post('/music')
+        .send({
+          title: 'add music',
+          album: 'add album',
+          genres: 'add genre',
+          length: '65:63',
+          year: 2037,
+          artist: '',
+          producer: 'add producer',
+          video: 'add video',
+          lyrics: 'add lyrics'
+        })
+        .end((err, res) => {
+          res.status.should.be.equal(400)
+          expect(res.body.message).be.equal('Artist cannot be empty')
+          done()
+        })
+    })
+  })
 })
