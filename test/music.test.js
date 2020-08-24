@@ -456,4 +456,37 @@ describe('Music Api', () => {
         })
     })
   })
+
+  describe('Get music By Year Route', () => {
+    it('should get music by year', (done) => {
+      request
+        .get('/musics/year')
+        .query({ year: 2500 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+    it('should get music by year greater than', (done) => {
+      request
+        .get('/musics/year')
+        .query({ year_greater_than: 2500 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+    it('should get music by year less than', (done) => {
+      request
+        .get('/musics/year')
+        .query({ year_less_than: 2500 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
 })
