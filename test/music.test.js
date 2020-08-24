@@ -305,4 +305,24 @@ describe('Music Api', () => {
       })
     })
   })
+
+  describe('Get single music', () => {
+    it('it should GET a music by id', (done) => {
+      request.get(`/music/${newMusic.id}`).end((err, res) => {
+        res.status.should.be.equal(200)
+        res.body.should.be.a('object')
+        expect(res.body.music).to.have.property('title')
+        expect(res.body.music).to.have.property('artist')
+        expect(res.body.music).to.have.property('year')
+        done()
+      })
+    })
+    it('it should GET a music by id', (done) => {
+      request.get('/music/8888').end((err, res) => {
+        res.status.should.be.equal(404)
+        expect(res.body.message).to.equal('music not found')
+        done()
+      })
+    })
+  })
 })
