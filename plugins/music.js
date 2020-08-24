@@ -121,7 +121,7 @@ class Music {
         }
       }
     }).then((music) => {
-      res.status(200).send({ music })
+      res.status(200).send({ data: music })
     })
   }
 
