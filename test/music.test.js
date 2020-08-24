@@ -391,8 +391,8 @@ describe('Music Api', () => {
     })
   })
 
-  describe('Get movie By rating Route', () => {
-    it('should get movie by rating', (done) => {
+  describe('Get music By rating Route', () => {
+    it('should get music by rating', (done) => {
       request
         .get('/musics/rating')
         .query({ rating: 50 })
@@ -402,7 +402,7 @@ describe('Music Api', () => {
           done()
         })
     })
-    it('should get movie by rating greater than', (done) => {
+    it('should get music by rating greater than', (done) => {
       request
         .get('/musics/rating')
         .query({ rating_greater_than: 5 })
@@ -412,10 +412,43 @@ describe('Music Api', () => {
           done()
         })
     })
-    it('should get movie by rating less than', (done) => {
+    it('should get music by rating less than', (done) => {
       request
         .get('/musics/rating')
         .query({ rating_less_than: 5 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
+
+  describe('Get music By likes Route', () => {
+    it('should get music by likes', (done) => {
+      request
+        .get('/musics/likes')
+        .query({ likes: 1000 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+    it('should get music by likes greater than', (done) => {
+      request
+        .get('/musics/likes')
+        .query({ likes_greater_than: 1000 })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+    it('should get music by likes less than', (done) => {
+      request
+        .get('/musics/likes')
+        .query({ likes_less_than: 1000 })
         .end((err, res) => {
           res.status.should.be.equal(200)
           expect(res.body.data).to.be.an('array')
