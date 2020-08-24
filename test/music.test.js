@@ -325,4 +325,17 @@ describe('Music Api', () => {
       })
     })
   })
+
+  describe('Get Book By title route', () => {
+    it('should get book by title', (done) => {
+      request
+        .get('/musics/title')
+        .query({ title: 'update music test' })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
 })
