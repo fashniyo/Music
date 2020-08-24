@@ -377,4 +377,17 @@ describe('Music Api', () => {
         })
     })
   })
+
+  describe('Get music By producer route', () => {
+    it('should get music by producer', (done) => {
+      request
+        .get('/musics/producer')
+        .query({ producer: 'update producer test' })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
 })
