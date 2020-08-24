@@ -351,4 +351,17 @@ describe('Music Api', () => {
         })
     })
   })
+
+  describe('Get music By genres route', () => {
+    it('should get music by genres', (done) => {
+      request
+        .get('/musics/genre')
+        .query({ genres: 'update RnB' })
+        .end((err, res) => {
+          res.status.should.be.equal(200)
+          expect(res.body.data).to.be.an('array')
+          done()
+        })
+    })
+  })
 })
