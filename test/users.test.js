@@ -214,7 +214,7 @@ describe('User test', () => {
           firstName: 'Fash',
           lastName: 'Ola',
           email: 'olaniyi14@gmail.com',
-          password: 'Hkskd34;dpf;'
+          password: 'Hks5,kd34;dpf;'
         })
         .end((err, res) => {
           expect(res.status).to.equal(201)
