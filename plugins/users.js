@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import models from '../models/index'
@@ -15,6 +14,7 @@ class User {
       where: {
         email: req.body.email
       }
+    // eslint-disable-next-line consistent-return
     }).then((user) => {
       if (user) {
         return res.status(409).send({
