@@ -1,20 +1,9 @@
-import { Router } from 'express'
+import express from 'express'
+import User from '../plugins/users'
+import validateSignup from '../validators/validateUserSignUp'
 
-const router = Router()
+const router = express.Router()
 
-/* GET users listing. */
-router.get('/', (_req, res) => {
-  res.send('respond with a resource')
-})
+router.post('/signup', validateSignup, User.signUp)
 
 module.exports = router
-
-// import express from 'express'
-// import User from '../plugins/user'
-
-// const router = express.Router()
-
-// router.post('/signin', User.signIn)
-// router.post('/signup', User.signUp)
-
-// module.exports = router
