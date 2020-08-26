@@ -211,10 +211,10 @@ describe('User test', () => {
       request
         .post('/users/signup')
         .send({
-          firstName: 'Fash',
-          lastName: 'Ola',
-          email: 'olaniyi14@gmail.com',
-          password: 'Hks5,kd34;dpf;'
+          firstName: 'Janet',
+          lastName: 'Ogenyi',
+          email: 'janetene@gmail.com',
+          password: 'Somep@ssw4ordd'
         })
         .end((err, res) => {
           expect(res.status).to.equal(201)
