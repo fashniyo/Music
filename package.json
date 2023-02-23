@@ -28,7 +28,7 @@
     "pg": "^8.3.2",
     "pg-hstore": "^2.3.3",
     "regenerator-runtime": "^0.13.7",
-    "sequelize": "^6.9.0",
+    "sequelize": "^6.28.2",
     "validator": "^13.7.0"
   },
   "devDependencies": {
